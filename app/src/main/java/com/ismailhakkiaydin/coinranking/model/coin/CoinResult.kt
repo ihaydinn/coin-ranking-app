@@ -2,21 +2,17 @@ package com.ismailhakkiaydin.coinranking.model.coin
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.util.ArrayList
 
 data class CoinResult(
     @SerializedName("status")
-    var status: String?,
+    var status: String,
     @SerializedName("data")
-    var data: Data
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        TODO("data")
-    ) {
-    }
-
+    var `data`: Data
+) {
     data class Data(
         @SerializedName("stats")
         var stats: Stats,
@@ -24,14 +20,7 @@ data class CoinResult(
         var base: Base,
         @SerializedName("coins")
         var coins: List<Coin>
-    ) : Parcelable {
-        constructor(parcel: Parcel) : this(
-            TODO("stats"),
-            TODO("base"),
-            TODO("coins")
-        ) {
-        }
-
+    ) {
         data class Stats(
             @SerializedName("total")
             var total: Int,
@@ -60,9 +49,11 @@ data class CoinResult(
             var sign: String
         )
 
+        @Entity(tableName = "coin_table")
         data class Coin(
+            @PrimaryKey
             @SerializedName("id")
-            var id: Int,
+            var coinId: Int,
             @SerializedName("uuid")
             var uuid: String?,
             @SerializedName("slug")
@@ -75,16 +66,10 @@ data class CoinResult(
             var description: String?,
             @SerializedName("color")
             var color: String?,
-            @SerializedName("iconType")
-            var iconType: String?,
             @SerializedName("iconUrl")
-            var iconUrl: String?,
+            var coinUrl: String?,
             @SerializedName("websiteUrl")
             var websiteUrl: String?,
-            @SerializedName("socials")
-            var socials: List<Social>,
-            @SerializedName("links")
-            var links: List<Link>,
             @SerializedName("confirmedSupply")
             var confirmedSupply: Boolean,
             @SerializedName("numberOfMarkets")
@@ -111,10 +96,7 @@ data class CoinResult(
             var change: Double,
             @SerializedName("rank")
             var rank: Int,
-            @SerializedName("history")
-            var history: ArrayList<String>?,
-            @SerializedName("allTimeHigh")
-            var allTimeHigh: AllTimeHigh,
+
             @SerializedName("penalty")
             var penalty: Boolean
         ) : Parcelable {
@@ -128,9 +110,6 @@ data class CoinResult(
                 parcel.readString(),
                 parcel.readString(),
                 parcel.readString(),
-                parcel.readString(),
-                TODO("socials"),
-                TODO("links"),
                 parcel.readByte() != 0.toByte(),
                 parcel.readInt(),
                 parcel.readInt(),
@@ -144,47 +123,19 @@ data class CoinResult(
                 parcel.readLong(),
                 parcel.readDouble(),
                 parcel.readInt(),
-                parcel.createStringArrayList(),
-                TODO("allTimeHigh"),
                 parcel.readByte() != 0.toByte()
             ) {
             }
 
-            data class Social(
-                @SerializedName("name")
-                var name: String,
-                @SerializedName("url")
-                var url: String,
-                @SerializedName("type")
-                var type: String
-            )
-
-            data class Link(
-                @SerializedName("name")
-                var name: String,
-                @SerializedName("type")
-                var type: String,
-                @SerializedName("url")
-                var url: String
-            )
-
-            data class AllTimeHigh(
-                @SerializedName("price")
-                var price: String,
-                @SerializedName("timestamp")
-                var timestamp: Long
-            )
-
             override fun writeToParcel(parcel: Parcel, flags: Int) {
-                parcel.writeInt(id)
+                parcel.writeInt(coinId)
                 parcel.writeString(uuid)
                 parcel.writeString(slug)
                 parcel.writeString(symbol)
                 parcel.writeString(name)
                 parcel.writeString(description)
                 parcel.writeString(color)
-                parcel.writeString(iconType)
-                parcel.writeString(iconUrl)
+                parcel.writeString(coinUrl)
                 parcel.writeString(websiteUrl)
                 parcel.writeByte(if (confirmedSupply) 1 else 0)
                 parcel.writeInt(numberOfMarkets)
@@ -199,7 +150,6 @@ data class CoinResult(
                 parcel.writeLong(firstSeen)
                 parcel.writeDouble(change)
                 parcel.writeInt(rank)
-                parcel.writeStringList(history)
                 parcel.writeByte(if (penalty) 1 else 0)
             }
 
@@ -216,42 +166,6 @@ data class CoinResult(
                     return arrayOfNulls(size)
                 }
             }
-        }
-
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<Data> {
-            override fun createFromParcel(parcel: Parcel): Data {
-                return Data(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Data?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(status)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<CoinResult> {
-        override fun createFromParcel(parcel: Parcel): CoinResult {
-            return CoinResult(parcel)
-        }
-
-        override fun newArray(size: Int): Array<CoinResult?> {
-            return arrayOfNulls(size)
         }
     }
 }

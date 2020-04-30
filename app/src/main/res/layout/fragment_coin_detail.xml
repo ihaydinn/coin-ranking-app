@@ -30,49 +30,47 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp">
+                android:padding="5dp">
 
-                <ImageView
-                    android:id="@+id/imgCoinDetail"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
-                    android:layout_marginTop="16dp"
-                    android:imageUrl="@{coinDetail.iconUrl}"
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tvCoinName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{coinDetail.name}"
-                    android:textSize="22sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imgCoinDetail"
-                    app:layout_constraintStart_toStartOf="@+id/imgCoinDetail"
-                    app:layout_constraintTop_toBottomOf="@+id/imgCoinDetail" />
+                    <ImageView
+                        android:id="@+id/imgCoinDetail"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:imageUrl="@{coinDetail.coinUrl}" />
 
-                <TextView
-                    android:id="@+id/tvCoinCode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{coinDetail.symbol}"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/tvCoinName"
-                    app:layout_constraintStart_toStartOf="@+id/tvCoinName"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCoinName" />
+                    <TextView
+                        android:id="@+id/tvCoinName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{coinDetail.name}"
+                        android:textSize="22sp" />
 
-                <ImageView
-                    android:id="@+id/imgFavorite"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_favorite"
-                    app:layout_constraintEnd_toEndOf="@+id/tvCoinCode"
-                    app:layout_constraintStart_toStartOf="@+id/tvCoinCode"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCoinCode" />
+                    <TextView
+                        android:id="@+id/tvCoinCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{coinDetail.symbol}"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imgFavorite"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="3dp"
+                        android:src="@drawable/ic_favorite" />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tvCoinPrice"
@@ -81,28 +79,31 @@
                     android:formatPrice="@{coinDetail.price}"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/textView6"
                     app:layout_constraintStart_toEndOf="@+id/textView"
                     app:layout_constraintTop_toTopOf="@+id/textView" />
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_width="8dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="8dp"
                     android:text="$"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvCoinName" />
+                    app:layout_constraintEnd_toStartOf="@+id/tvCoinPrice"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMarketCap" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="8dp"
                     android:text="Market Cap"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvCoinName" />
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
                 <TextView
                     android:id="@+id/tvMarketCap"
@@ -129,7 +130,6 @@
 
         </androidx.cardview.widget.CardView>
 
-
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="0dp"
@@ -141,6 +141,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <ProgressBar
+            android:id="@+id/progressBarDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

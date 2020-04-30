@@ -26,7 +26,7 @@
                 android:layout_height="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:imageUrl="@{coin.iconUrl}" />
+                android:imageUrl="@{coin.coinUrl}" />
 
             <TextView
                 android:id="@+id/tvCoinName"

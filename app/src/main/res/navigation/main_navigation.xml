@@ -23,7 +23,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.ismailhakkiaydin.coinranking.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/coinDetailFragment"
         android:name="com.ismailhakkiaydin.coinranking.ui.coin.detail.CoinDetailFragment"
