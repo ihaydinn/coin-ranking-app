@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ismailhakkiaydin.coinranking.R
 import com.ismailhakkiaydin.coinranking.base.BaseVMFragment
@@ -31,6 +33,8 @@ class CoinFragment : BaseVMFragment<CoinViewModel>() {
                 rvCoins.visibility = View.VISIBLE
                 rvCoins.layoutManager = GridLayoutManager(context, 2)
                 rvCoins.adapter = CoinAdapter(coins){
+                    val bundle = bundleOf("coin_details" to it)
+                    Navigation.findNavController(view).navigate(R.id.action_coinFragment_to_coinDetailFragment, bundle)
                     Toast.makeText(context, "Item Clicked", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -2,6 +2,7 @@ package com.ismailhakkiaydin.coinranking.data
 
 import com.ismailhakkiaydin.coinranking.model.coin.CoinResult
 import com.ismailhakkiaydin.coinranking.model.exchange.ExchangeResult
+import com.ismailhakkiaydin.coinranking.model.history.CoinHistoryResult
 import com.ismailhakkiaydin.coinranking.util.Constant
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -18,12 +19,16 @@ class ApiClient {
         .build()
         .create(ApiService::class.java)
 
-    fun getAllCoins(): Single<CoinResult>{
+    fun getAllCoins(): Single<CoinResult> {
         return api.getAllCoins()
     }
 
-    fun getAllExchanges(): Single<ExchangeResult>{
+    fun getAllExchanges(): Single<ExchangeResult> {
         return api.getAllExchanges()
+    }
+
+    fun getAllCoinHistory(coinId: Int): Single<CoinHistoryResult> {
+        return api.getAllCoinHistory(coinId)
     }
 
 

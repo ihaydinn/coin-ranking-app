@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="coinDetail"
+            type="com.ismailhakkiaydin.coinranking.model.coin.CoinResult.Data.Coin" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".ui.coin.detail.CoinDetailFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#E3E3E3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgCoinDetail"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginTop="16dp"
+                    android:imageUrl="@{coinDetail.iconUrl}"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvCoinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{coinDetail.name}"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="@+id/imgCoinDetail"
+                    app:layout_constraintStart_toStartOf="@+id/imgCoinDetail"
+                    app:layout_constraintTop_toBottomOf="@+id/imgCoinDetail" />
+
+                <TextView
+                    android:id="@+id/tvCoinCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{coinDetail.symbol}"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCoinName"
+                    app:layout_constraintStart_toStartOf="@+id/tvCoinName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCoinName" />
+
+                <ImageView
+                    android:id="@+id/imgFavorite"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_favorite"
+                    app:layout_constraintEnd_toEndOf="@+id/tvCoinCode"
+                    app:layout_constraintStart_toStartOf="@+id/tvCoinCode"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCoinCode" />
+
+                <TextView
+                    android:id="@+id/tvCoinPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:formatPrice="@{coinDetail.price}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="$"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvCoinName" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="Market Cap"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvCoinName" />
+
+                <TextView
+                    android:id="@+id/tvMarketCap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numberFormat="@{coinDetail.marketCap}"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView6"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/tvCoinChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:changedPrice="@{coinDetail.change}"
+                    android:text="@{String.valueOf(coinDetail.change)}"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvCoinPrice"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCoinPrice" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_line_data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
