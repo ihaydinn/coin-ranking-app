@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="#E3E3E3"
+            app:cardBackgroundColor="#EFEFEF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

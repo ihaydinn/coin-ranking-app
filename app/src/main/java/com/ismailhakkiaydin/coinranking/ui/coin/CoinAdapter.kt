@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ismailhakkiaydin.coinranking.R
 import com.ismailhakkiaydin.coinranking.databinding.ItemCoinBinding
 import com.ismailhakkiaydin.coinranking.model.coin.CoinResult
+import kotlinx.android.synthetic.main.item_coin.view.*
 
 class CoinAdapter(val coinsList: List<CoinResult.Data.Coin>, val onItemClick:(CoinResult.Data.Coin)->Unit):RecyclerView.Adapter<CoinAdapter.CoinViewHolder>() {
     class CoinViewHolder(var view: ItemCoinBinding): RecyclerView.ViewHolder(view.root) {

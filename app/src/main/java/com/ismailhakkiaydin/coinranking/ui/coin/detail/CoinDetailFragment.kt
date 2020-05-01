@@ -72,7 +72,7 @@ class CoinDetailFragment : BaseFragment<FragmentCoinDetailBinding,CoinDetailView
 
                 lineChart.xAxis.valueFormatter = DateFormatter(it)
 
-                val lineDataSet = LineDataSet(lineEntries,"deneme")
+                val lineDataSet = LineDataSet(lineEntries,"Price")
                 lineChart.data = LineData(lineDataSet)
                 lineDataSet.setDrawValues(false)
                 lineDataSet.setDrawFilled(true)

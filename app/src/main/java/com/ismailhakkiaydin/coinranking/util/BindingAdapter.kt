@@ -19,7 +19,7 @@ class DateFormatter(list: List<CoinHistoryResult.Data.History>) : ValueFormatter
     override fun getFormattedValue(value: Float): String {
         val item: Long = chartDataListItems[value.toInt()].timestamp
 
-        var converter = SimpleDateFormat("d MMM yyyy hh:mm a", Locale("en"))
+        var converter = SimpleDateFormat("d MMM hh:mm a", Locale("en"))
         var convertedDay = converter.format(Date(item))
 
         return convertedDay

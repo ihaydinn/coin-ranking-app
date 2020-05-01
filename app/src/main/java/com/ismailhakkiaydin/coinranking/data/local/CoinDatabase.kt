@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ismailhakkiaydin.coinranking.model.coin.CoinResult
 
-@Database(entities = [CoinResult.Data.Coin::class], version = 1)
+@Database(entities = [CoinResult.Data.Coin::class], version = 5)
 abstract class CoinDatabase : RoomDatabase() {
     abstract fun coinDao(): CoinDao
 
@@ -21,7 +21,7 @@ abstract class CoinDatabase : RoomDatabase() {
                     context.applicationContext,
                     CoinDatabase::class.java,
                     "coins.db"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
             }
             return instance as CoinDatabase
         }

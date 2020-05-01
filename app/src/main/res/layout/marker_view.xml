@@ -3,7 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="2dp"
-    android:background="#000"
     android:orientation="vertical">
 
     <TextView
@@ -15,7 +14,9 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:text=""
-        android:textSize="10dp"
+        android:padding="2dp"
+        android:background="@drawable/background_marker"
+        android:textSize="12dp"
         android:textColor="@android:color/white"
         android:ellipsize="end"
         android:textAppearance="?android:attr/textAppearanceSmall" />
